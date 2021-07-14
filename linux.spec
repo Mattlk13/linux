@@ -5,13 +5,13 @@
 #
 
 Name:           linux
-Version:        5.4.14
-Release:        897
+Version:        5.12.16
+Release:        1054
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.14.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.16.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -30,58 +30,41 @@ Requires: linux-license = %{version}-%{release}
 %define __strip /bin/true
 
 #cve.start cve patches from 0001 to 050
-Patch001: CVE-2019-12379.patch
-Patch002: CVE-2019-19046.patch
-Patch003: CVE-2019-19054.patch
 #cve.end
 
 #mainline: Mainline patches, upstream backport and fixes from 0051 to 0099
-Patch0051: 0051-rcu-nocb-Fix-dump_tree-hierarchy-print-always-active.patch
-Patch0052: 0052-drm-i915-save-AUD_FREQ_CNTRL-state-at-audio-domain-s.patch
-Patch0053: 0053-drm-i915-Fix-audio-power-up-sequence-for-gen10-displ.patch
-Patch0054: 0054-drm-i915-extend-audio-CDCLK-2-BCLK-constraint-to-mor.patch
 #mainline.end
 
 #Serie.clr 01XX: Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
-Patch0102: 0102-Increase-the-ext4-default-commit-age.patch
+Patch0102: 0102-increase-the-ext4-default-commit-age.patch
 Patch0103: 0103-silence-rapl.patch
 Patch0104: 0104-pci-pme-wakeups.patch
 Patch0105: 0105-ksm-wakeups.patch
 Patch0106: 0106-intel_idle-tweak-cpuidle-cstates.patch
 Patch0107: 0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch
 Patch0108: 0108-smpboot-reuse-timer-calibration.patch
-Patch0109: 0109-raid6-add-Kconfig-option-to-skip-raid6-benchmarking.patch
-Patch0110: 0110-Initialize-ata-before-graphics.patch
-Patch0111: 0111-give-rdrand-some-credit.patch
-Patch0112: 0112-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit.patch
-Patch0113: 0113-kernel-time-reduce-ntp-wakeups.patch
-Patch0114: 0114-init-wait-for-partition-and-retry-scan.patch
-Patch0115: 0115-print-fsync-count-for-bootchart.patch
-Patch0116: 0116-Add-boot-option-to-allow-unsigned-modules.patch
-Patch0117: 0117-Enable-stateless-firmware-loading.patch
-Patch0118: 0118-Migrate-some-systemd-defaults-to-the-kernel-defaults.patch
-Patch0119: 0119-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
-Patch0120: 0120-add-scheduler-turbo3-patch.patch
-Patch0121: 0121-use-lfence-instead-of-rep-and-nop.patch
-Patch0122: 0122-do-accept-in-LIFO-order-for-cache-efficiency.patch
-Patch0123: 0123-zero-extra-registers.patch
-Patch0124: 0124-locking-rwsem-spin-faster.patch
-Patch0125: 0125-ata-libahci-ignore-staggered-spin-up.patch
-Patch0126: 0126-print-CPU-that-faults.patch
-Patch0127: 0127-x86-microcode-Force-update-a-uCode-even-if-the-rev-i.patch
-Patch0128: 0128-x86-microcode-echo-2-reload-to-force-load-ucode.patch
-Patch0129: 0129-fix-bug-in-ucode-force-reload-revision-check.patch
-Patch0130: 0130-add-workaround-for-binutils-optimization.patch
-Patch0131: 0131-nvme-workaround.patch
+Patch0109: 0109-initialize-ata-before-graphics.patch
+Patch0110: 0110-give-rdrand-some-credit.patch
+Patch0111: 0111-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit.patch
+Patch0112: 0112-init-wait-for-partition-and-retry-scan.patch
+Patch0113: 0113-print-fsync-count-for-bootchart.patch
+Patch0114: 0114-add-boot-option-to-allow-unsigned-modules.patch
+Patch0115: 0115-enable-stateless-firmware-loading.patch
+Patch0116: 0116-migrate-some-systemd-defaults-to-the-kernel-defaults.patch
+Patch0117: 0117-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
+Patch0118: 0118-add-scheduler-turbo3-patch.patch
+Patch0119: 0119-use-lfence-instead-of-rep-and-nop.patch
+Patch0120: 0120-do-accept-in-LIFO-order-for-cache-efficiency.patch
+Patch0121: 0121-locking-rwsem-spin-faster.patch
+Patch0122: 0122-ata-libahci-ignore-staggered-spin-up.patch
+Patch0123: 0123-print-CPU-that-faults.patch
+Patch0124: 0124-x86-microcode-Force-update-a-uCode-even-if-the-rev-i.patch
+Patch0125: 0125-x86-microcode-echo-2-reload-to-force-load-ucode.patch
+Patch0126: 0126-fix-bug-in-ucode-force-reload-revision-check.patch
+Patch0127: 0127-nvme-workaround.patch
+Patch0128: 0128-don-t-report-an-error-if-PowerClamp-run-on-other-CPU.patch
 #Serie.end
-
-#Serie1.name WireGuard
-#Serie1.git  https://git.zx2c4.com/WireGuard
-#Serie1.cmt  edad0d6e99e5133b1e8e865d727a25fff6399cb4
-#Serie1.tag  0.0.20191219
-Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
-#Serie1.end
 
 %description
 The Linux kernel.
@@ -122,19 +105,12 @@ Requires:       linux-license = %{version}-%{release}
 Linux kernel build files
 
 %prep
-%setup -q -n linux-5.4.14
+%setup -q -n linux-5.12.16
 
 #cve.patch.start cve patches
-%patch0001 -p1
-%patch0002 -p1
-%patch0003 -p1
 #cve.patch.end
 
 #mainline.patch.start Mainline patches, upstream backport and fixes
-%patch0051 -p1
-%patch0052 -p1
-%patch0053 -p1
-%patch0054 -p1
 #mainline.patch.end
 
 #Serie.patch.start Clear Linux patches
@@ -166,14 +142,7 @@ Linux kernel build files
 %patch0126 -p1
 %patch0127 -p1
 %patch0128 -p1
-%patch0129 -p1
-%patch0130 -p1
-%patch0131 -p1
 #Serie.patch.end
-
-#Serie1.patch.start
-%patch1001 -p1
-#Serie1.patch.end
 
 cp %{SOURCE1} .
 
